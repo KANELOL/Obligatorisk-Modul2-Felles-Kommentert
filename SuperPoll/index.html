@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superpoll</title>
+    <!-- Her laster vi inn javascript filer -->
+    <script src="js/model.js"></script>
+    <script src="js/common.js"></script> <!--henter inn currentPoll-->
+    <script src="js/createPollPageView.js"></script> <!--her ser vi hvordan createPoll ser ut-->
+    <script src="js/createPollPageController.js"></script> <!-- dette er da controllere som kontrollerer ting. det er en kontroller per view!-->
+    <script src="js/votePageView.js"></script>
+    <script src="js/votePageController.js"></script>
+</head>
+<body>
+    <div> <!-- Hva gjør denne? -->
+        Meny:
+        <!-- En knapp som sender deg til neste side. Hvor ligger funksjonen? -->
+        <!-- Linker til funksjonen changePage(), og får den til å enten stemme eller lage en ny poll vote eller createVote). -->
+        <a href="javascript:changePage('vote')">stem</a>
+        <a href="javascript:changePage('createVote')">lag poll</a>
+        <!--her er det vi skal legge inn ny side!-->
+    </div>
+    <div id="app"></div>
+
+    <script>
+        // her tegner vi opp viewet -ved oppstart?
+        updateView();
+
+        function updateView() {
+            const page = model.app.currentPage; //default view??? model.app.currentPage starter med 'createPoll' verdi.w
+            //Sjekker modellen model.app.currentPage og oppdaterer siden etter ('page') verdi.
+            if (page === 'createPoll') updateViewCreateVotePage();
+            else if (page === 'vote') updateViewVotePage(); // Denne må lages.
+        }
+        //Endrer modellen app.currenPage og oppdaterer View.
+        function changePage(page) {
+            model.app.currentPage = page;
+            updateView();
+        }
+    </script>
+</body>
+
+</html>

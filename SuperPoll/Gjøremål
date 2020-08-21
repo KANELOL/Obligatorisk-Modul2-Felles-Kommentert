@@ -1,0 +1,19 @@
+Kommenter koden.
+Gå igjennom kunnskaps hull.
+Rediger kommentarene.
+Følg dataen.
+
+https://getacademy.moodle.school/mod/page/view.php?id=496
+
+Ta utgangspunkt i koden på  github.com/GetAcademy/SuperPoll og legg til en ny side som lister opp alle pollene som finnes.
+Gjør det mulig å velge en av pollene og gå til siden for å endre/oppdatere den pollen. Lag minst en unit test av controller-funksjonen
+som velger en poll og bytter side. 
+
+Lever oppgaven som en epost til oblig@getacademy.no med lenke til ditt github-repository med kode.
+Fristen er innen utløpet av uke 4, så dette må dere jobbe med individuelt fra start parallelt med
+caset som dere gjør i team. Denne oppgaven skal altså leveres individuelt, men hjelp gjerne hverandre!
+
+
+Gjør det mulig å velge en av pollene 
+og gå til siden for å endre/oppdatere den pollen. 
+Lag minst en unit test av controller-funksjonen som velger en poll og bytter side. 
