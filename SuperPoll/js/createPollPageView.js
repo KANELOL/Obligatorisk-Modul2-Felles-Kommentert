@@ -8,7 +8,7 @@ function updateViewCreateVotePage() {
     // ternary operator? Setter teksten på redigeringsknappen til
     // "Oppdater" om den allerede har en ID, og "Lag" om den ikke har det
     const buttonText = pageInputs.pollId !== null ? 'Oppdater' : 'Lag';
-    
+
     // Blir brukt med innerHTML til
     // Lager en konstant variabel som
     const checked = pageInputs.usersCanAddAlternatives ? 'checked' : ''; // sjekker om folk kan legge til nye alternativer eller ikke
@@ -22,7 +22,7 @@ function updateViewCreateVotePage() {
     document.getElementById('app').innerHTML = `
 
         <h3>Spørsmål</h3>
-        <input 
+        <input
             type="text" 
             value="${pageInputs.question}" 
             size="80" 
@@ -56,23 +56,23 @@ function updateViewCreateVotePage() {
 //lager stemmer
 function createVotesHtml() {
     const counts = {};
-    const currentPoll = getCurrentPoll(); // lager en variabel common.js her ble den brukt.
-    const votesObj = currentPoll !== null ? currentPoll.votes : {};
+    const currentPoll = getCurrentPoll(); // returnerer variabelen poll, eller null fra common.js, som vil da være current poll
+    const votesObj = currentPoll !== null ? currentPoll.votes : {}; // setter voteObj til votes i currentPoll, med mindre det ikke er noen der
     const votes = Object.values(votesObj);
     for (let vote of votes) {
-        counts[vote] = (counts[vote] || 0) + 1;
+        counts[vote] = (counts[vote] || 0) + 1; // legger til en vote
     }
 
-    const pageInputs = model.inputs.createPoll;
+    const pageInputs = model.inputs.createPoll; // kort forkortning av lengre kode der man går inn i createPoll inputs
 
     let html = '';
     for (let option of pageInputs.options) {
-        html += `<li>${option} - ${counts[option] || 0}</li>`;
+        html += `<li>${option} - ${counts[option] || 0}</li>`; // sjekker hvilke options man har og hvor mange stemmer hver option har
     }
     return html;
 }
 
 function createAlternativesHtml2() {
     const pageInputs = model.inputs.createPoll;
-    return pageInputs.options.map(option => `<li><${option}/li>`).join('');
+    return pageInputs.options.map(option => `<li><${option}/li>`).join(''); // viser hvert alternative som ligger i createPoll
 }

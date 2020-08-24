@@ -12,6 +12,8 @@
     <script src="js/createPollPageController.js"></script> <!-- dette er da controllere som kontrollerer ting. det er en kontroller per view!-->
     <script src="js/votePageView.js"></script>
     <script src="js/votePageController.js"></script>
+    <script src="js/listPollsController.js"></script> <!-- denne har vi lagt til selv!-->
+    <script src="js/listPollsView.js"></script> <!-- denne har vi lagt til selv!-->
 </head>
 <body>
     <div> <!-- Hva gjør denne? -->
@@ -19,8 +21,9 @@
         <!-- En knapp som sender deg til neste side. Hvor ligger funksjonen? -->
         <!-- Linker til funksjonen changePage(), og får den til å enten stemme eller lage en ny poll vote eller createVote). -->
         <a href="javascript:changePage('vote')">stem</a>
-        <a href="javascript:changePage('createVote')">lag poll</a>
-        <!--her er det vi skal legge inn ny side!-->
+        <a href="javascript:changePage('createPoll')">lag poll</a>
+        <a href="javascript:changePage('listPolls')">oversikt over polls</a> <!--her er det vi skal legge inn ny side!-->
+
     </div>
     <div id="app"></div>
 
@@ -32,7 +35,10 @@
             const page = model.app.currentPage; //default view??? model.app.currentPage starter med 'createPoll' verdi.w
             //Sjekker modellen model.app.currentPage og oppdaterer siden etter ('page') verdi.
             if (page === 'createPoll') updateViewCreateVotePage();
-            else if (page === 'vote') updateViewVotePage(); // Denne må lages.
+            // Denne må lages. Ligger i votePageView.js 1 linje.
+            else if (page === 'vote') updateViewVotePage();
+
+            else if (page === "listPolls") updateListPollsView();
         }
         //Endrer modellen app.currenPage og oppdaterer View.
         function changePage(page) {
