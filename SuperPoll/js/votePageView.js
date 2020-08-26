@@ -30,4 +30,4 @@ function createVoteButtonsHtml() {
         html += `<button onclick="vote('${option}')">${option}</button> ${currentVoteInfo}<br/>`;
     }
     return html;
-}
+} 
