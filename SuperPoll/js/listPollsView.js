@@ -15,7 +15,7 @@ function updateListPollsView() {
             document.getElementById('app').innerHTML += `
             <br/>
             <h3>${poll.question}</h3>
-            <button id="${poll.id+1}"onclick="pollDetails(${this.id})">Vis/Endre</button>
+            <button id="${poll.id+1}"onclick="pollDetails(${poll.id})">Vis/Endre</button>
 
             Klikk her for å redigere
             `  
@@ -24,9 +24,15 @@ function updateListPollsView() {
 }
 
 function pollDetails(id) {
-    model.app.currentPoll = id;
+    model.inputs.createPoll = model.polls[id];
     updateViewCreateVotePage();
-    document.getElementById('app').innerHTML = model.polls[id];
+    // model.app.currentPoll = id;
+    //     document.getElementById("app").innerHTML = `
+    //     <input id="question" value="${model.polls[id].question}">
+    //     <input id="question" value="${model.polls[id].options}">
+    //     <input id="question" value="${model.polls[id].question}">
+    //     <input id="question" value="${model.polls[id].question}">
+    //     `;
 }
 
 // Liste med alle polls
