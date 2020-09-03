@@ -23,14 +23,16 @@ const model = {
         },
     },
     //jeg tror at denne fyller seg med pollene vi lager???
-    polls: []
+    polls: [
+        {pollId: 0,
+        question: 'Hvem er den tøffeste læreren ved GET Academy?',
+        options: ['Geir', 'Eskil', 'Terje']},
+
+        {pollId: 1,
+            createdBy: 'per',
+            isOpen: true,
+            usersCanAddAlternatives: true,
+            question: 'Liker du å spise is?',
+            options: ['Ja', 'Nei']}
+    ]
 };
-
-/*
-    Hvilke andre måter kunne vi lagret stemmene på?
-        - Hva er best for å legge til nye stemmer?
-        - Hva er best for å endre stemmer?
-        - Hva er best for å telle opp stemmer?
-
-    Hvordan ville det blitt om hvert alternativ var et objekt, med en id?
-*/

@@ -12,48 +12,21 @@
     <div id="qunit"></div>
     <div id="qunit-fixture"></div>
     <script src="https://code.jquery.com/qunit/qunit-2.10.1.js"></script>
-    <script src="js/createPollPageController.js"></script>
+    <script src="js/model.js"></script>
+    <script src="js/common.js"></script> 
+    <script src="js/createPollPageView.js"></script>
+    <script src="js/createPollPageController.js"></script> 
+    <script src="js/votePageView.js"></script>
+    <script src="js/votePageController.js"></script>
+    <script src="js/listPollsController.js"></script>
+    <script src="js/listPollsView.js"></script> 
     <script>
-        const model = {};
 
-        function updateView() {}
-
-        QUnit.module('createPollPage', function() {
-
-            QUnit.test('create poll', function(assert) {
-                // arrange
-                model.inputs = {
-                    createPoll: {
-                        pollId: null,
-                        question: 'Hvem er den tøffeste læreren ved GET Academy?',
-                        options: ['Geir', 'Eskil', 'Terje'],
-                        usersCanAddAlternatives: true,
-                    },
-                };
-                model.polls = [];
-
-                // act
-                createOrUpdatePoll();
-
-                // assert
-                const expectedPollObj = {
-                    isOpen: true,
-                    usersCanAddAlternatives: true,
-                    question: 'Hvem er den tøffeste læreren ved GET Academy?',
-                    options: ['Geir', 'Eskil', 'Terje'],
-                    votes: {},
-                };
-                assert.equal(model.polls.length, 1);
-                assert.deepEqual(model.polls[0], expectedPollObj);
-                assert.equal(model.inputs.createPoll.pollId !== null, true);
-
-            });
-
-            QUnit.test('update poll', function(assert) {
-                assert.equal(1, 2);
-            });
+        QUnit.test("Selects poll", function (assert) {
+            pollDetails(1)
+            assert.equal(model.app.currentPoll, 1 )
         });
+        
     </script>
 </body>
-
 </html>
