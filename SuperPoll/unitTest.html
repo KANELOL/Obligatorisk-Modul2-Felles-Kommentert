@@ -9,24 +9,51 @@
 </head>
 
 <body>
+
     <div id="qunit"></div>
     <div id="qunit-fixture"></div>
     <script src="https://code.jquery.com/qunit/qunit-2.10.1.js"></script>
-    <script src="js/model.js"></script>
-    <script src="js/common.js"></script> 
-    <script src="js/createPollPageView.js"></script>
-    <script src="js/createPollPageController.js"></script> 
-    <script src="js/votePageView.js"></script>
+    <!-- <script src="js/model.js"></script> -->
+    <script src="js/common.js"></script>
+    <script src="js/createPollPageController.js"></script>
     <script src="js/votePageController.js"></script>
-    <script src="js/listPollsController.js"></script>
-    <script src="js/listPollsView.js"></script> 
-    <script>
+    <script scr="js/listPollsController.js"></script>
+    <script src="js/listPollsView.js"></script>
 
-        QUnit.test("Selects poll", function (assert) {
-            pollDetails(1)
-            assert.equal(model.app.currentPoll, 1 )
+    <script>
+        let model;
+
+        function updateView() {}
+
+        QUnit.test("Does Saving in EditMode actually save? ", function(assert) {
+
+            model = {
+                inputs: {
+                    createPoll: {
+                        pollId: null,
+                        newAlternative: '',
+                        question: 'Det beste spørsmålet er fremdeles ikke stilt.',
+                        options: ['Nei', 'Feil', 'Joda'],
+                        usersCanAddAlternatives: true,
+                    },
+                },
+                polls: [],
+            };
+
+            createOrUpdatePoll();
+            assert.equal(1, model.polls.length);
+            let poll = model.polls[0];
+            assert.equal('Det beste spørsmålet er fremdeles ikke stilt.', poll.question);
+
         });
-        
+
+        QUnit.test("Selects poll", function(assert) {
+            let currentPoll = 2;
+            let pollIsBeingEdited = pollDetails(currentPoll);
+            assert.equal(pollIsBeingEdited, model.polls[currentPoll], "You made it work!");
+        });
     </script>
+
 </body>
+
 </html>

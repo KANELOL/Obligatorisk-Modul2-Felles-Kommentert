@@ -23,9 +23,12 @@ function updateListPollsView() {
     }
 }
 
-function pollDetails(id) {
-    model.inputs.createPoll = model.polls[id];
-    updateViewCreateVotePage();
+function pollDetails(id) { //DENNE skal testes
+    model.inputs.createPoll = model.polls[id]; 
+ //setter "editmode" på den pollen man trykker på
+    console.log("id: " , id, "createPoll ", model.inputs.createPoll )
+    return model.inputs.createPoll;
+    //updateViewCreateVotePage();
     // model.app.currentPoll = id;
     //     document.getElementById("app").innerHTML = `
     //     <input id="question" value="${model.polls[id].question}">

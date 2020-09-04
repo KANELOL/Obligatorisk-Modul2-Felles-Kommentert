@@ -1,5 +1,4 @@
-// Hvor kjører denne funksjonen, og hva gjør den?
-// kjører om den nåværende siden er "createPoll". Den 
+// kjører om den nåværende siden er "createPoll". 
 function updateViewCreateVotePage() {
     //Lager ny variabel pageInputs og
     // henter informasjon fra model.js model.inputs.createPoll
@@ -8,15 +7,23 @@ function updateViewCreateVotePage() {
     // ternary operator? Setter teksten på redigeringsknappen til
     // "Oppdater" om den allerede har en ID, og "Lag" om den ikke har det
     const buttonText = pageInputs.pollId !== null ? 'Oppdater' : 'Lag';
+    //const buttonText = "Oppdater";
+
 
     // Blir brukt med innerHTML til
     // Lager en konstant variabel som
     const checked = pageInputs.usersCanAddAlternatives ? 'checked' : ''; // sjekker om folk kan legge til nye alternativer eller ikke
-    const poll = getCurrentPoll();
-    const hasVotes = poll !== null && Object.keys(poll.votes).length > 0;
+    let poll = getCurrentPoll(); //dersom getCurrentPoll() returner null - tomt obj. poll = {}
+    console.log(poll, " hva ligger i poll?")
+
+    const hasVotes = poll !== null && poll.votes && Object.keys(poll.votes).length > 0;
+
     const disableInput = hasVotes ? 'disabled' : '';
 
-    // create updateViewVotePage function here !!!!!!!
+    // if(hasVotes)
+    // {
+    //     disableInput = 'disabled';
+    // } else { disableInput = ''; }
 
     // Endrer 
     document.getElementById('app').innerHTML = `
@@ -27,15 +34,13 @@ function updateViewCreateVotePage() {
             value="${pageInputs.question}" 
             size="80" 
             oninput="model.inputs.createPoll.question=this.value" 
-            ${disableInput}
+           ${disableInput}
         />
         <br/>
         <input
             type="checkbox"
             onchange="model.inputs.createPoll.usersCanAddAlternatives=this.checked==='checked'" 
-            ${// ^ om checkboxen er checked (og har derved attributten "checked"), settes usersCanAdd(...) til true, og ellers false.
-            // checked===true kunne også ha blitt brukt (?)
-            checked} 
+            ${checked} 
         />
         <br/>
         <h4>Alternativer</h4>
@@ -53,11 +58,11 @@ function updateViewCreateVotePage() {
     
     `;
 }
-//lager stemmer
+
 function createVotesHtml() {
     const counts = {};
     const currentPoll = getCurrentPoll(); // returnerer variabelen poll, eller null fra common.js, som vil da være current poll
-    const votesObj = currentPoll !== null ? currentPoll.votes : {}; // setter voteObj til votes i currentPoll, med mindre det ikke er noen der
+    const votesObj = currentPoll !== null && currentPoll.votes ? currentPoll.votes : {}; // setter voteObj til votes i currentPoll, med mindre det ikke er noen der
     const votes = Object.values(votesObj);
     for (let vote of votes) {
         counts[vote] = (counts[vote] || 0) + 1; // legger til en vote
